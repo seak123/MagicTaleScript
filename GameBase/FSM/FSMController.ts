@@ -5,7 +5,7 @@ export abstract class FSMState {
   constructor(ctr: FSMController) {
     this.mctrl = ctr;
   }
-  public abstract OnEnter();
+  public abstract OnEnter(pre?: FSMState);
   public abstract OnUpdate(dt?: number);
   public abstract OnLeave();
 }
@@ -29,7 +29,8 @@ export default class FSMController {
       return;
     }
     if (this.curState) this.curState.OnLeave();
+    let preState = this.curState;
     this.curState = nextState;
-    if (this.curState) this.curState.OnEnter();
+    if (this.curState) this.curState.OnEnter(preState);
   }
 }

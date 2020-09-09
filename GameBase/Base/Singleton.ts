@@ -25,6 +25,4 @@ export class Singleton {
 
         return <T>this._instance;
     }
-
-    public static get instance() { return this.getInstance(); }
 }

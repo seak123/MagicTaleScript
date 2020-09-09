@@ -5,7 +5,10 @@ export default class BattleProcedure extends FSMState {
     super(ctrl);
   }
 
-  OnEnter() {}
+  OnEnter() {
+    //load map
+    //load battle config
+  }
 
   OnUpdate() {}
 
