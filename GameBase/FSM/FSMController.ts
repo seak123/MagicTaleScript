@@ -24,7 +24,7 @@ export default class FSMController {
   }
   public SwitchState(next: string) {
     let nextState = this.states[next];
-    if (nextState) {
+    if (!nextState) {
       MLogger.Error("FSMController tried to switch a unvalid state");
       return;
     }
