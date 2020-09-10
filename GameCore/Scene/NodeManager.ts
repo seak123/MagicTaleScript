@@ -5,24 +5,27 @@ import * as G from "../../G";
 
 export default class NodeManager extends Singleton implements ISystem {
   public static get Instance(): NodeManager {
-    return this.instance as NodeManager;
+    return this.getInstance() as NodeManager;
   }
 
   private node2DRoot: G.Ett;
   private node3DRoot: G.Ett;
+
+  public normal1Node: G.Ett;
 
   public Init() {
     this.create2DRoot();
     this.create3DRoot();
   }
 
-  public Release() {}
+  public Release() { }
 
   private create2DRoot() {
     this.node2DRoot = MGame.game.createEntity2D("Node2DRoot");
     MGame.game.rootUICanvas.entity.transform2D.addChild(
-      this.node2DRoot.transfrom2D
+      this.node2DRoot.transform2D
     );
+    this.normal1Node = this.create2DNode("Normal1");
   }
 
   private create3DRoot() {

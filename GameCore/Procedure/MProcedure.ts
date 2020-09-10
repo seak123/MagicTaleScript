@@ -2,6 +2,7 @@ import FSMController from "../../GameBase/FSM/FSMController";
 import MenuProcedure from "./MenuProcedure";
 import BattleProcedure from "./BattleProcedure";
 import MainWindowMgr from "../../GameLogic/Window/MainWindowMgr";
+import NodeManager from "../Scene/NodeManager";
 
 export default class Mprocedure extends FSMController {
   private static _instance: Mprocedure;
@@ -25,6 +26,7 @@ export default class Mprocedure extends FSMController {
   }
 
   private InnerInit() {
+    NodeManager.Instance.Init();
     MainWindowMgr.Instance.Init();
   }
 }
