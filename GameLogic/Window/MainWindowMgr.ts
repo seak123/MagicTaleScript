@@ -19,7 +19,7 @@ export default class MainWindowMgr extends Singleton implements ISystem {
   Init() {
     WindowManager.Instance.AddWindow(UIConst.UI_MainMenu, MainMenu).then(
       (script) => {
-        this._mainMenu = script;
+        this._mainMenu = script as MainMenu;
       }
     );
   }
