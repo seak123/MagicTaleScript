@@ -1,9 +1,11 @@
 import { Singleton } from "../../GameBase/Base/Singleton";
-import BaseWindow from "./BaseWindow";
+import BaseWindow, { WindowDepth } from "./BaseWindow";
 import AssetManager from "../../GameBase/Asset/AssetManager";
 import GameConst from "../../GameBase/Constant/GameConst";
 import * as G from "../../G";
 import NodeManager from "../../GameCore/Scene/NodeManager";
+import ResourceManager from "../../GameCore/Resource/ResourceManager";
+import GameUtil from "../Utils/GameUtil";
 
 export default class WindowManager extends Singleton {
   public static get Instance() {
@@ -11,12 +13,31 @@ export default class WindowManager extends Singleton {
   }
   public AddWindow(path: string, ctor: typeof BaseWindow): Promise<BaseWindow> {
     return new Promise<any>((resolve, reject) => {
-      AssetManager.LoadAssetAsync(GameConst.RES_ROOT + GameConst.RES_PATH.UI + path + GameConst.RES_TYPE.Prefab).then((prefab: G.Prefab) => {
+      ResourceManager.LoadPrefab(path).then((prefab: G.Prefab) => {
         const entity = prefab.instantiate();
-        NodeManager.Instance.normal1Node.transform2D.addChild(entity.transform2D);
         const comp = entity.addComponent(ctor);
+        this.InitWindow(comp);
         resolve(comp);
       });
-    })
+    });
+  }
+
+  private InitWindow(window: BaseWindow) {
+    const entity = window.entity;
+    let parent;
+    switch (window.windowDepth) {
+      case WindowDepth.Normal1:
+        parent = NodeManager.Instance.normal1Node;
+        break;
+      case WindowDepth.Normal2:
+        parent = NodeManager.Instance.normal2Node;
+        break;
+      case WindowDepth.Notice:
+        parent = NodeManager.Instance.noticeNode;
+        break;
+      default:
+        parent = NodeManager.Instance.normal1Node;
+    }
+    GameUtil.AddChild2D(parent, entity);
   }
 }

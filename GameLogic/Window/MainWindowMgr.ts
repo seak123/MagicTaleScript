@@ -15,13 +15,22 @@ export default class MainWindowMgr extends Singleton implements ISystem {
     return this.getInstance<MainWindowMgr>();
   }
 
-  private _mainMenu: G.Ett;
+  private _mainMenu: MainMenu;
   Init() {
     WindowManager.Instance.AddWindow(UIConst.UI_MainMenu, MainMenu).then(
       (script) => {
-        this._mainMenu = script.entity;
+        this._mainMenu = script;
       }
     );
   }
   Release() {}
+
+  SwitchMode(mode: MainWindowMode) {
+    switch (mode) {
+      case MainWindowMode.Battle:
+        break;
+      case MainWindowMode.MainMenu:
+        break;
+    }
+  }
 }
