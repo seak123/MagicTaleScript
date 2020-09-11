@@ -30,6 +30,7 @@ export default class MGame extends engine.Script {
     // engine dt单位是秒，而游戏里用的是毫秒
     dt *= 1000;
     MGame.deltaTime = dt;
+    Mprocedure.Instance.OnUpdate(dt);
   }
 
   public onLateUpdate(dt) {}
