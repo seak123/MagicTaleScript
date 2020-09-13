@@ -8,8 +8,12 @@ export default class MainMenu extends BaseWindow {
   protected static settings = {
     Elements: [
       {
+        Name: ".",
+        Alias: "root"
+      },
+      {
         Name: "MenuContent/AnchorCenter/BattleBtn",
-        Alias: "BattleBtn",
+        Alias: "battleBtn",
         Type: G.E.UIButton,
         Handler: {
           onClick: "ReqBattle"
@@ -17,7 +21,16 @@ export default class MainMenu extends BaseWindow {
       }
     ]
   }
+  private root: G.Ett;
   ReqBattle() {
     Mprocedure.Instance.StartBattle();
+  }
+
+  Hide() {
+    this.root.active = false;
+  }
+
+  Show() {
+    this.root.active = true;
   }
 }

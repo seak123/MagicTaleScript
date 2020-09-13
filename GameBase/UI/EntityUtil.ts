@@ -1,6 +1,7 @@
 import { TransformBase, Component } from "engine/engine";
 import * as G from "../../G";
 import BaseWindow from "../../GameLogic/Window/BaseWindow";
+import MGame from "../../GameCore/MGame";
 
 export default class EntityUtil {
     public static FindChildByPath(nodeTran: TransformBase, path: string, spliteChar: string = "/"): TransformBase {
@@ -31,5 +32,9 @@ export default class EntityUtil {
         }
 
         return com;
+    }
+
+    public static CreateEntity3D(){
+        return MGame.game.createEntity3D(name);
     }
 }

@@ -17,13 +17,13 @@ export default class MainWindowMgr extends Singleton implements ISystem {
   }
 
   private _mainMenu: MainMenu;
-  Init() {
-    WindowManager.Instance.AddWindow(UIConst.UI_MainMenu, MainMenu).then(
-      (script) => {
-        this._mainMenu = script as MainMenu;
-      }
-    );
-    Joystick.Instance.Init();
+
+  async Init() {
+    const script = await WindowManager.Instance.AddWindow(UIConst.UI_MainMenu, MainMenu)
+    this._mainMenu = script as MainMenu;
+
+    await Joystick.Instance.Init();
+    Joystick.Instance.hide();
   }
   Release() {
     Joystick.Instance.release();
@@ -36,8 +36,14 @@ export default class MainWindowMgr extends Singleton implements ISystem {
   SwitchMode(mode: MainWindowMode) {
     switch (mode) {
       case MainWindowMode.Battle:
+        Joystick.Instance.show();
+        if (this._mainMenu)
+          this._mainMenu.Hide();
         break;
       case MainWindowMode.MainMenu:
+        Joystick.Instance.hide();
+        if (this._mainMenu)
+          this._mainMenu.Show();
         break;
     }
   }

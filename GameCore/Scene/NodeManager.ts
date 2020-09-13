@@ -16,12 +16,14 @@ export default class NodeManager extends Singleton implements ISystem {
   public normal3Node: G.Ett;
   public noticeNode: G.Ett;
 
+  public entityNode: G.Ett;
+
   public Init() {
     this.create2DRoot();
     this.create3DRoot();
   }
 
-  public Release() {}
+  public Release() { }
 
   private create2DRoot() {
     this.node2DRoot = MGame.game.createEntity2D("Node2DRoot");
@@ -38,6 +40,8 @@ export default class NodeManager extends Singleton implements ISystem {
     this.node3DRoot = MGame.game.createEntity3D("Node3DRoot");
     MGame.game.activeScene.root.transform.addChild(this.node3DRoot.transform);
     MGame.game.markAsPersist(this.node3DRoot);
+
+    this.entityNode = this.create3DNode("Entity");
   }
 
   public create2DNode(name: string) {

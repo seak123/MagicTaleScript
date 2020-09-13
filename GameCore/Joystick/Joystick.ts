@@ -40,14 +40,14 @@ export class Joystick extends Singleton implements ISystem {
     public moveTexturePos(offsetX: number) { this._texture.moveOffsetPos(offsetX); }
     public resetTexturePos() { this._texture.resetOffsetPos(); }
 
-    public Init() {
+    public async Init() {
         if (!this._texture) {
-            ResourceManager.LoadUIPrefab("UI_Joystick").then((tex: G.Ett) => {
-                const container = tex.transform2D.children[0].entity;
-                this._texture = new Texture(container);
-                this._texture.on(ON_TOUCH_TEXTURE, this.onTouchDown, this);
-                this._texture.addedToStage(NodeManager.Instance.normal1Node);
-            });
+            const tex: G.Ett = await ResourceManager.LoadUIPrefab("UI_Joystick") as G.Ett;
+            const container = tex.transform2D.children[0].entity;
+            this._texture = new Texture(container);
+            this._texture.on(ON_TOUCH_TEXTURE, this.onTouchDown, this);
+            this._texture.addedToStage(NodeManager.Instance.normal1Node);
+
         } else {
             this._texture.addedToStage(NodeManager.Instance.normal1Node);
         }

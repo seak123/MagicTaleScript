@@ -16,10 +16,10 @@ export default class Mprocedure extends FSMController {
         return this._instance;
     }
 
-    public Init() {
+    public async Init() {
         this.SignState(Mprocedure.StateDefine.Menu, new MenuProcedure(this));
         this.SignState(Mprocedure.StateDefine.Battle, new BattleProcedure(this));
-        this.InnerInit();
+        await this.InnerInit();
     }
 
     public StartBattle() {
@@ -32,9 +32,9 @@ export default class Mprocedure extends FSMController {
         super.OnUpdate(dt);
     }
 
-    private InnerInit() {
+    private async InnerInit() {
         NodeManager.Instance.Init();
         GestureManager.Instance.Init();
-        MainWindowMgr.Instance.Init();
+        await MainWindowMgr.Instance.Init();
     }
 }

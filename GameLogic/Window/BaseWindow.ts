@@ -62,6 +62,8 @@ export default class BaseWindow extends G.Script {
       com = child.getComponent(type);
     } else if (script) {
       com = EntityUtil.AddSingleComponent(child, script);
+    } else {
+      return child;
     }
 
     if (handler) {

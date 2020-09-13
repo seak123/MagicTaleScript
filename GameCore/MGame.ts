@@ -25,9 +25,9 @@ export default class MGame extends engine.Script {
     this.appEntity.addComponent(MGame);
   }
 
-  public onAwake() {
+  public async onAwake() {
     //init game procedure
-    Mprocedure.Instance.Init();
+    await Mprocedure.Instance.Init();
     Mprocedure.Instance.SwitchState(Mprocedure.StateDefine.Menu);
   }
 

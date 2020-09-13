@@ -1,10 +1,15 @@
 import BattleScene from "../../GameLogic/Battle/BattleScene";
+import EntitySystem from "../../GameLogic/Battle/System/EntitySystem";
 
 export default class BattleSession {
   private _scene: BattleScene;
 
+  public entitySystem:EntitySystem;
+
   //开启战斗
-  public EnterSession() {}
+  public EnterSession() {
+    this.entitySystem = new EntitySystem();
+  }
 
   public OnUpdate(dt: number) {}
 
