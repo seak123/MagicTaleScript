@@ -4,6 +4,7 @@ import * as G from "../../G";
 import WindowManager from "./WindowManager";
 import UIConst from "../../GameCore/Constant/UIConst";
 import MainMenu from "../UI/MainMenu";
+import { Joystick } from "../../GameCore/Joystick/Joystick";
 
 export enum MainWindowMode {
   MainMenu = 1,
@@ -22,8 +23,15 @@ export default class MainWindowMgr extends Singleton implements ISystem {
         this._mainMenu = script as MainMenu;
       }
     );
+    Joystick.Instance.Init();
   }
-  Release() {}
+  Release() {
+    Joystick.Instance.release();
+  }
+
+  OnUpdate(dt: number) {
+    Joystick.Instance.Update(dt);
+  }
 
   SwitchMode(mode: MainWindowMode) {
     switch (mode) {

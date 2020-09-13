@@ -13,9 +13,8 @@ export default class WindowManager extends Singleton {
   }
   public AddWindow(path: string, ctor: typeof BaseWindow): Promise<BaseWindow> {
     return new Promise<any>((resolve, reject) => {
-      ResourceManager.LoadPrefab(path).then((prefab: G.Prefab) => {
-        const entity = prefab.instantiate();
-        const comp = entity.addComponent(ctor);
+      ResourceManager.LoadUIPrefab(path).then((entity: G.Ett) => {
+        const comp:BaseWindow = entity.addComponent(ctor);
         this.InitWindow(comp);
         resolve(comp);
       });

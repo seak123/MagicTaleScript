@@ -1,3 +1,4 @@
+import * as G from "../../G";
 export default class MLogger {
   static Log(
     param0?: any,
@@ -36,5 +37,9 @@ export default class MLogger {
   ) {
     const args = Array.from(arguments);
     console.error("[error]", ...args);
+  }
+
+  static ToStringV2(v: G.v2) {
+    return "( x = " + v.x + ", y = " + v.y + " )";
   }
 }

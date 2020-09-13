@@ -9,8 +9,13 @@ export default class MGame extends engine.Script {
   public static Init() {
     this.game = engine.game;
 
+    this.InitWAEngine();
     //create dont destory-instance
     this.CreateAppObject();
+  }
+
+  private static InitWAEngine(){
+    this.game = window["game"] as engine.Game;
   }
 
   private static CreateAppObject() {
@@ -30,7 +35,8 @@ export default class MGame extends engine.Script {
     // engine dt单位是秒，而游戏里用的是毫秒
     dt *= 1000;
     MGame.deltaTime = dt;
+    Mprocedure.Instance.Update(dt);
   }
 
-  public onLateUpdate(dt) {}
+  public onLateUpdate(dt) { }
 }

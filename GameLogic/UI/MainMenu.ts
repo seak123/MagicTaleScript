@@ -1,6 +1,7 @@
 import BaseWindow from "../Window/BaseWindow";
 import * as G from "../../G";
 import MLogger from "../../GameBase/Debug/MLogger";
+import MGame from "../../GameCore/MGame";
 
 export default class MainMenu extends BaseWindow {
     protected static settings = {
@@ -15,8 +16,8 @@ export default class MainMenu extends BaseWindow {
             }
         ]
     }
-
     ReqBattle() {
         MLogger.Log("Start Battle!!!!!!!!!!!!!");
     }
+
 }
