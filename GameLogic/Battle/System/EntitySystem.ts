@@ -16,7 +16,7 @@ export default class EntitySystem {
     this.entityPool = new EntityPool<MEntity>();
     this._sess = sess;
     this.entityPool.createFunc = () => {
-      const newEntity: G.Ett = EntityUtil.CreateEntity3D();
+      const newEntity: G.Ett = EntityUtil.CreateEntity3D("Entity");
       GameUtil.AddChild(NodeManager.Instance.entityNode, newEntity);
       const newComponent = EntityUtil.AddSingleComponent(
         newEntity,

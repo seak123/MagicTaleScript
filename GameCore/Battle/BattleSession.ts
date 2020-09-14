@@ -2,17 +2,17 @@ import BattleScene from "../../GameLogic/Battle/BattleScene";
 import EntitySystem from "../../GameLogic/Battle/System/EntitySystem";
 import TransformSystem from "../../GameLogic/Battle/System/TransformSystem";
 import BaseComponent from "../../GameLogic/Battle/Component/BaseComponent";
-import BaseSystem from "../../GameLogic/Battle/System/BaseSystem";
+import { IBattleSystem } from "../../GameLogic/Battle/System/BaseSystem";
 import Transform from "../../GameLogic/Battle/Component/Transform";
 
 export default class BattleSession {
   private _scene: BattleScene;
 
-  private _systems: Map<Function, BaseSystem>;
+  private _systems: Map<Function, IBattleSystem>;
   public entitySystem: EntitySystem;
 
   constructor() {
-    this._systems = new Map<Function, BaseSystem>();
+    this._systems = new Map<Function, IBattleSystem>();
   }
 
   //开启战斗
@@ -22,7 +22,7 @@ export default class BattleSession {
   }
 
   public OnUpdate(dt: number) {
-    this._systems.forEach((s: BaseSystem) => {
+    this._systems.forEach((s: IBattleSystem) => {
       s.onUpdate(dt);
     });
   }
@@ -46,5 +46,5 @@ export default class BattleSession {
     this._scene.Load(cfg);
   }
 
-  private LoadSystem(ctor: typeof BaseComponent, system: BaseSystem) {}
+  private LoadSystem(ctor: typeof BaseComponent, system: IBattleSystem) { }
 }

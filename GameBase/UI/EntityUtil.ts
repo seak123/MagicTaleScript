@@ -34,7 +34,7 @@ export default class EntityUtil {
         return com;
     }
 
-    public static CreateEntity3D(){
+    public static CreateEntity3D(name: string) {
         return MGame.game.createEntity3D(name);
     }
 }

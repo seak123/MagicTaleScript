@@ -14,8 +14,12 @@ export default class MEntity extends G.Script implements IPoolItem {
     this._sess = sess;
   }
 
-  Reset() {}
-  Release() {}
+  Reset() { }
+  Release() {
+    this.components.forEach((comp: BaseComponent, ctor: typeof BaseComponent) => {
+      this._sess.GetSystem(ctor).Recycle(comp);
+    });
+  }
 
   AddComponent<T extends BaseComponent>(ctor: typeof BaseComponent): T {
     if (this.components.has(ctor)) {

@@ -1,10 +1,11 @@
 import BattleSession from "../../GameCore/Battle/BattleSession";
 import ResourceManager from "../../GameCore/Resource/ResourceManager";
 import MEntity from "./Entity/MEntity";
+import GameUtil from "../Utils/GameUtil";
 
 export default class BattleScene {
   private _sess: BattleSession;
-  private player:MEntity;
+  private player: MEntity;
 
   constructor(sess: BattleSession) {
     this._sess = sess;
@@ -13,10 +14,10 @@ export default class BattleScene {
   Load(config) {
     //load player
     //ResourceManager.LoadPrefab()
-    this.player = this._sess.entitySystem.GetEntity();
+    this.player = GameUtil.CreateBasicUnit(this._sess);
   }
 
-  OnEnter() {}
+  OnEnter() { }
 
-  OnLeave() {}
+  OnLeave() { }
 }
