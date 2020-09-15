@@ -7,10 +7,6 @@ export default class BaseComponent implements IPoolItem {
   SetEntity(entity: MEntity) {
     this._entity = entity;
   }
-  Reset() {
-    throw new Error("Method not implemented.");
-  }
-  Release() {
-    throw new Error("Method not implemented.");
-  }
+  Reset() {}
+  Release() {}
 }
