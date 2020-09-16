@@ -1,8 +1,7 @@
 import * as G from "../../G";
 import MGame from "../../GameCore/MGame";
 import BattleSession from "../../GameCore/Battle/BattleSession";
-import Transform from "../Battle/Component/Transform";
-import MEntity from "../Battle/Entity/MEntity";
+
 
 export default class GameUtil {
   static AddChild(parent: G.Ett, child: G.Ett) {
@@ -46,11 +45,5 @@ export default class GameUtil {
     const node = MGame.game.rootUICanvas.entity;
 
     return checkTouchFunc(node, pos);
-  }
-
-  static CreateBasicUnit(sess: BattleSession): MEntity {
-    let entity = sess.entitySystem.GetEntity();
-    entity.AddComponent<Transform>(Transform);
-    return entity;
   }
 }
